@@ -1,0 +1,63 @@
+<section id="login" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card" style="opacity: 0.9;">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-sign-in-alt"></i> Login</h4>
+          </div>
+          <div class="card-body">
+            <form (submit)="onLoginSubmit()">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  class="form-control"
+                  [(ngModel)]="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  [(ngModel)]="password"
+                  name="password"
+                  required
+                />
+              </div>
+
+              <input
+                type="submit"
+                value="Login"
+                class="btn sub btn-secondary btn-block"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <br>
+<div class="col-md-6 col-md-offset-3">
+
+  <h2 class="page-header">Login</h2>
+  <form (submit)="onLoginSubmit()" class="well">
+      <div class="form-group">
+        <label for="username">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="email" name="email" >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="password" name="password">
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Login">
+  </form>
+</div>  -->

@@ -1,0 +1,26 @@
+<br>
+<h2 class="page-header"> Admin Register</h2>
+<form (submit)="onRegisterSubmit()" class="well">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" [(ngModel)]="name" name="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="username">Usename</label>
+    <input type="text" class="form-control" [(ngModel)]="username" name="username" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="email" name="email"required >
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+  </div>
+  <div class="form-group">
+    <label for="rtppassword">Repeat Password</label>
+    <input type="password" class="form-control" [(ngModel)]="rptpassword" name="rptpassword" required>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+

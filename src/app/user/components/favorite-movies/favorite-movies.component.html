@@ -1,0 +1,29 @@
+<!-- Listings -->
+<section id="listings" class="py-5">
+  <div class="container">
+    <h1>Favorite Movies</h1>
+    <br />
+    <div class="row">
+      <div *ngFor="let movie of movies" class="col-md-6 col-lg-4 mb-4">
+        <div class="card listing-preview">
+          <a routerLink="/user/movie/{{ movie._id }}"
+            ><img class="card-img-top" src="{{ movie.image.url }}" alt=""
+          /></a>
+          <div class="card-body">
+            <div class="listing-heading text-center">
+              <a routerLink="/user/movie/{{ movie._id }}">
+                <h4 class="text-primary  text-danger">
+                  {{ movie.name }}
+                </h4>
+              </a>
+              <p style="color: white;">
+                <i class="fas fa-clock text-secondary"></i>
+                {{ movie.released | date }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

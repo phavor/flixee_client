@@ -1,0 +1,16 @@
+img {
+  width: 100% !important;
+}
+i,
+p {
+  color: black;
+}
+
+.listing-preview {
+  margin-bottom: 20px;
+  background: rgb(43, 40, 40);
+}
+
+.listing-preview img {
+  height: 450px;
+}

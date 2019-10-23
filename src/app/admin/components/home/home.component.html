@@ -1,0 +1,489 @@
+<section id="dashboard" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          Movies List
+
+          <!-- Button to Open the Modal -->
+        <button
+        type="button"
+        class="btn btn-success float-right"
+        style="margin-top:0px !important"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        Add Movie
+      </button>
+        </h2>
+        
+        <div class="table-responsive">
+          <table class="table table-striped  table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Released</th>
+                <th scope="col">Runtime</th>
+                <th scope="col">Genre</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movie of movies">
+                <td>{{ movie.name }}</td>
+                <td>{{ movie.released | date }}</td>
+                <td>{{ movie.runtime }}</td>
+                <td>{{ movie.genre }}</td>
+                <td>
+                  <button
+                    class="btn btn-info "
+                    style="margin-right: 6px;"
+                    (click)="viewMovie(movie._id)"
+                  >
+                    View
+                  </button>
+                  <button
+                    class="btn btn-primary "
+                    style="margin-right: 6px;"
+                    data-toggle="modal"
+                    data-target="#updateModal"
+                    (click)="storeMovie(movie)"
+                  >
+                    Update
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#deleteModal"
+                    (click)="getId(movie._id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div
+                class="modal-header "
+                style="background-color: #10284e; color: white;"
+              >
+                <h2 class="modal-title" style="margin-left: 20px">Add Movie</h2>
+                <button
+                  type="button"
+                  id="add"
+                  (click)="clear()"
+                  class="close"
+                  data-dismiss="modal"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body" style="border-top: none !important;">
+                <form  >
+
+                  <div class="row">
+                  <div class="form-group col-md-12">
+                    <label for="name" class="col-form-label">Name:</label>
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      [(ngModel)]="name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="runtime" class="col-form-label"
+                      >RunTime:
+                    </label>
+                    <input
+                      type="text"
+                      name="runtime"
+                      class="form-control"
+                      [(ngModel)]="runtime"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="released" class="col-form-label"
+                      >Released:
+                    </label>
+                    <input
+                      type="date"
+                      name="released"
+                      class="form-control"
+                      [(ngModel)]="released"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="genre" class="col-form-label">Genre: </label>
+                    <input
+                      type="text"
+                      name="genre"
+                      [(ngModel)]="genre"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <button
+                      mat-raised-button
+                      (click)="openInput()"
+                      class="btn btn-info"
+                    >
+                      Select File to Add Image
+                    </button>
+                  </div>
+
+                  <div class=" col-md-6">
+                    <img
+                      *ngIf="imageUrl !== ''"
+                      [src]="imageUrl"
+                      alt="User Image"
+                      style="width:90%; height:auto;"
+                    />
+                    <!-- <img id="originalImage" [src]=originalImageUrl alt=" Original User Image"  style="display: none"> -->
+                  </div>
+
+                  <input
+                    id="fileInput"
+                    style="display: none"
+                    type="file"
+                    #img
+                    (change)="fileChange($event.target.files)"
+                    name="img"
+                    accept="image/*"
+                  />
+
+                  <div class="form-group col-md-12">
+                    <label for="actors" class="col-form-label">Actors: </label>
+                    <input
+                      type="text"
+                      name="actors"
+                      [(ngModel)]="actors"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="director" class="col-form-label"
+                      >Director:
+                    </label>
+                    <input
+                      type="email"
+                      name="director"
+                      class="form-control"
+                      [(ngModel)]="director"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="writer" class="col-form-label">Writer: </label>
+                    <input
+                      type="text"
+                      name="writer"
+                      [(ngModel)]="writer"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="plot" class="col-form-label">Plot: </label>
+                    <textarea
+                      name="plot"
+                      [(ngModel)]="plot"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="language" class="col-form-label"
+                      >Language:
+                    </label>
+                    <select
+                      [(ngModel)]="language"
+                      name="language"
+                      class="form-control"
+                      id="language"
+                    >
+                      <option value="English">English</option>
+                      <option value="French">French</option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="Yoruba">Yoruba</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="country" class="col-form-label"
+                      >Country:
+                    </label>
+                    <input
+                      type="text"
+                      name="country"
+                      [(ngModel)]="country"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="awards" class="col-form-label">Awards: </label>
+                    <textarea
+                      name="awards"
+                      [(ngModel)]="awards"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                  </div>
+
+                  <button
+                    *ngIf="!showWait"
+                    (click)="addMovie()"
+                    class="btn btn-block btn-secondary"
+                  >
+                    Submit
+                  </button>
+
+                  <button *ngIf="showWait" class="btn btn-secondary">
+                    Please Wait...
+                  </button>
+                </form>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Update Modal -->
+        <div class="modal" id="updateModal">
+          <div class="modal-dialog modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div
+                class="modal-header "
+                style="background-color:  #10284e; color: white;"
+              >
+                <h2 class="modal-title" style="margin-left: 20px">
+                  Update Movie
+                </h2>
+                <button
+                  type="button"
+                  id="upd"
+                  (click)="clear()"
+                  class="close"
+                  data-dismiss="modal"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body" style="border-top: none !important;">
+                <form>
+                  <div class="row">
+                  <div class="form-group col-md-12">
+                    <label for="name" class="col-form-label">Name:</label>
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      [(ngModel)]="name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="runtime" class="col-form-label"
+                      >RunTime:
+                    </label>
+                    <input
+                      type="text"
+                      name="runtime"
+                      class="form-control"
+                      [(ngModel)]="runtime"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group col-md-5">
+                    <label for="released" class="col-form-label"
+                      >Released:
+                    </label>
+                    <input
+                      type="date"
+                      name="released"
+                      class="form-control"
+                      [(ngModel)]="released"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="genre" class="col-form-label">Genre: </label>
+                    <input
+                      type="text"
+                      name="genre"
+                      [(ngModel)]="genre"
+                      class="form-control"
+                    />
+                  </div>                
+
+                  <div class="form-group col-md-12">
+                    <label for="actors" class="col-form-label">Actors: </label>
+                    <input
+                      type="text"
+                      name="actors"
+                      [(ngModel)]="actors"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="director" class="col-form-label"
+                      >Director:
+                    </label>
+                    <input
+                      type="email"
+                      name="director"
+                      class="form-control"
+                      [(ngModel)]="director"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="writer" class="col-form-label">Writer: </label>
+                    <input
+                      type="text"
+                      name="writer"
+                      [(ngModel)]="writer"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="plot" class="col-form-label">Plot: </label>
+                    <textarea
+                      name="plot"
+                      [(ngModel)]="plot"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="language" class="col-form-label"
+                      >Language:
+                    </label>
+                    <select
+                      [(ngModel)]="language"
+                      name="language"
+                      class="form-control"
+                      id="language"
+                    >
+                      <option value="English">English</option>
+                      <option value="French">French</option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="Yoruba">Yoruba</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="country" class="col-form-label"
+                      >Country:
+                    </label>
+                    <input
+                      type="text"
+                      name="country"
+                      [(ngModel)]="country"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="awards" class="col-form-label">Awards: </label>
+                    <textarea
+                      name="awards"
+                      [(ngModel)]="awards"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                </div>
+
+                  <button
+                    *ngIf="!showWait"
+                    (click)="updateMovie()"
+                    class="btn btn-block btn-secondary"
+                  >
+                    Submit
+                  </button>
+                  <button *ngIf="showWait" class="btn btn-secondary">
+                    Please Wait...
+                  </button>
+                </form>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Delete Modal -->
+        <div class="modal" id="deleteModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div
+                class="modal-header "
+                style="background-color: #10284e; color: white;"
+              >
+                <h2 class="modal-title" style="margin-left: 20px">
+                  Delete Movie
+                </h2>
+                <button
+                  type="button"
+                  id="del"
+                  class="close"
+                  data-dismiss="modal"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body" style="border-top: none !important;">
+                <h3>Click on confirm to delete this movie.</h3>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer"></div>
+              <button
+                *ngIf="!showWait"
+                class="btn btn-danger"
+                (click)="deleteMovie()"
+              >
+                Confirm
+              </button>
+              <button *ngIf="showWait" class="btn btn-danger">
+                Please Wait...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

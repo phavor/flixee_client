@@ -1,0 +1,90 @@
+<section class="container">
+  <div class="col-md-12 header">
+    <h1>{{ movie.name }}</h1>
+    <img [src]="url" class="img img-responsive" alt="" />
+  </div>
+
+  <div class="col-md-12" style="margin-top: 20px;">
+    <div class="row mb-5 fields" style="color: black !important">
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-money-bill-alt"></i>Rate:
+            <span class="float-right">
+              <div *ngIf="movie.rate == '1'">
+                <i class="fa fa-star"></i>
+              </div>
+              <div *ngIf="movie.rate == '2'">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div *ngIf="movie.rate == '3'">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div *ngIf="movie.rate == '4'">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div *ngIf="movie.rate == '5'">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+            </span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-bed"></i> Released:
+            <span class="float-right">{{ movie.released | date }}</span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-bath"></i> Runtime:
+            <span class="float-right">{{ movie.runtime }}</span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-car"></i> Genre:
+            <span class="float-right">{{ movie.genre }} </span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-th-large"></i> Actors:
+            <span class="float-right">{{ movie.actors }}</span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-car"></i> Writer:
+            <span class="float-right">{{ movie.writer }} </span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-square"></i> Language:
+            <span class="float-right">{{ movie.language }} </span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-calendar"></i> Country:
+            <span class="float-right">{{ movie.country }}</span>
+          </li>
+        </ul>
+      </div>
+      <br />
+      <div class="col-md-12" style="margin-top: 20px;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-th-large"></i> Awards:
+            <span class="float-right">{{ movie.awards }}</span>
+          </li>
+          <li class="list-group-item text-secondary">
+            <i class="fas fa-car"></i> Plot:
+            <span class="float-right">{{ movie.plot }} </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

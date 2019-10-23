@@ -1,0 +1,112 @@
+<section id="register" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card" style="opacity: 0.9;">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-user-plus"></i> Register</h4>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  class="form-control"
+                  [(ngModel)]="firstname"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  class="form-control"
+                  [(ngModel)]="lastname"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  [(ngModel)]="username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  [(ngModel)]="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  [(ngModel)]="password"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="rptpassword">Confirm Password</label>
+                <input
+                  type="password"
+                  name="rptpassword"
+                  class="form-control"
+                  [(ngModel)]="rptpassword"
+                  required
+                />
+              </div>
+              <button
+                value="Register"
+                (click)="onRegisterSubmit()"
+                class="btn sub btn-secondary btn-block"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <br>
+<div class="col-md-6 col-md-offset-3">
+  <h2 class="page-header">Register</h2>
+  <form (submit)="onRegisterSubmit()" class="well">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" [(ngModel)]="name" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="username">Usename</label>
+      <input type="text" class="form-control" [(ngModel)]="username" name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" [(ngModel)]="email" name="email"required >
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+    </div>
+    <div class="form-group">
+      <label for="rtppassword">Repeat Password</label>
+      <input type="password" class="form-control" [(ngModel)]="rptpassword" name="rptpassword" required>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+</div> -->

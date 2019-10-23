@@ -1,0 +1,18 @@
+img {
+  width: 50%;
+  margin: auto 25%;
+}
+
+.header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+i,
+.text-secondary span {
+  color: black !important;
+}

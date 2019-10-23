@@ -1,0 +1,86 @@
+<!-- Showcase -->
+<section id="showcase">
+  <div class="container text-center">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/img/gemn4dx.jpg" alt="Los Angeles" />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/ene-1920x598.jpg" alt="Chicago" />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/malsnk-1920x598.jpg" alt="Chicago" />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/sky-1920x598.jpg" alt="Chicago" />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/war1-1920x598.jpg" alt="Chicago" />
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Listings -->
+<section id="listings" class="py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Listing 1 -->
+      <div *ngFor="let movie of movies" class="col-md-6 col-lg-4 mb-4">
+        <div class="card listing-preview">
+          <a routerLink="/user/movie/{{ movie._id }}"
+            ><img class="card-img-top" src="{{ movie.image.url }}" alt=""
+          /></a>
+          <div class="card-body">
+            <div class="listing-heading">
+              <a routerLink="/user/movie/{{ movie._id }}">
+                <h4 class="text-primary text-center text-danger">
+                  {{ movie.name }}
+                </h4>
+              </a>
+              <p style="color: white;">
+                <i class="fas fa-clock text-secondary"></i>
+                {{ movie.released | date }}
+                <i
+                  *ngIf="!favorite(movie._id)"
+                  class="fa fa-heart float-right"
+                  style="font-size: 1.3em; color: white; cursor: pointer;"
+                  (click)="addFavorite(movie._id)"
+                  aria-hidden="true"
+                ></i>
+
+                <i
+                  *ngIf="favorite(movie._id)"
+                  class="fa fa-heart float-right"
+                  style="font-size: 1.3em; color: orange; cursor: pointer;"
+                  (click)="removeFavorite(movie._id)"
+                  aria-hidden="true"
+                ></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
